@@ -3,8 +3,7 @@ import time, cv2, numpy as np
 import torch
 from ultralytics import YOLO
 
-def benchmark(video_path, model_path="yolov8n.pt", imgsz=640,
-              n_frames=100, batch_size=4):
+def benchmark(video_path, model_path="yolov8n.pt", imgsz=640, n_frames=100, batch_size=4):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Device: {device}")
     
