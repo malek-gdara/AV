@@ -121,6 +121,7 @@ class LSTMTrainer:
         dict
             Historique des losses train/val.
         """
+        best_val_loss = float("inf")
         for epoch in range(1, epochs + 1):
             train_loss = self._train_one_epoch(train_loader)
             self.history["train_loss"].append(train_loss)
@@ -130,7 +131,10 @@ class LSTMTrainer:
                 val_loss = self.evaluate(val_loader)
                 self.history["val_loss"].append(val_loss)
                 self.scheduler.step(val_loss)
-
+            if val_loss is not None and val_loss < best_val_loss:
+                best_val_loss = val_loss
+                self.save("checkpoints/best_model.pt")
+            
             if verbose:
                 msg = f"Époque {epoch}/{epochs} - train_loss: {train_loss:.6f}"
                 if val_loss is not None:
