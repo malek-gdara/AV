@@ -1,0 +1,10 @@
+{
+  "model_path": "yolov8n.pt",
+  "conf_threshold": 0.5,
+  "target_classes": null,
+  "tracker_config": "bytetrack.yaml",
+  "max_history": 5,
+  "source": 0,
+  "show_window": true,
+  "show_speed": true
+}
